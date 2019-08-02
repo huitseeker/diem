@@ -4,6 +4,8 @@
 use super::*;
 use crate::{code_cache::module_cache::VMModuleCache, txn_executor::TransactionExecutor};
 use bytecode_verifier::{VerifiedModule, VerifiedScript};
+use nextgen_crypto::ed25519::*;
+use rand::SeedableRng;
 use std::collections::HashMap;
 use types::{access_path::AccessPath, account_address::AccountAddress, byte_array::ByteArray};
 use vm::{
@@ -18,6 +20,9 @@ use vm::{
 };
 use vm_cache_map::Arena;
 use vm_runtime_types::value::Local;
+
+// reproduced from vm_genesis::GENESIS_SEED to avoid a circular crate dependency
+const TEST_GENESIS_SEED: [u8; 32] = [42; 32];
 
 // Trait for the data cache to build a TransactionProcessor
 struct FakeDataCache {
@@ -710,10 +715,11 @@ fn test_transaction_info() {
     let entry_func = FunctionRef::new(&loaded_main, CompiledScript::MAIN_INDEX);
 
     let txn_info = {
-        let (_, public_key) = crypto::signing::generate_genesis_keypair();
+        let mut rng = ::rand::rngs::StdRng::from_seed(TEST_GENESIS_SEED);
+        let (_, public_key) = compat::generate_keypair(&mut rng);
         TransactionMetadata {
             sender: AccountAddress::default(),
-            public_key,
+            public_key: public_key.into(),
             sequence_number: 10,
             max_gas_amount: GasUnits::new(100_000_009),
             gas_unit_price: GasPrice::new(5),

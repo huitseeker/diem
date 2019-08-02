@@ -35,3 +35,4 @@ stdlib = { path = "../stdlib" }
 
 [dev-dependencies]
 types = { path = "../../types", features = ["testing"] }
+nextgen_crypto = { path = "../../crypto/nextgen_crypto", features = ["testing"]}
