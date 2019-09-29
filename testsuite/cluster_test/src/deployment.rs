@@ -115,12 +115,10 @@ impl DeploymentManager {
         }
     }
 
-    pub fn tag_tested_image(&mut self, hash: String) -> failure::Result<()> {
-        self.tag_image(TESTED_TAG.to_string(), hash.clone())?;
-        fs::write(LAST_DEPLOYED_FILE, &hash).expect("Failed to write .last_deployed_digest");
+    pub fn tag_tested_image(&mut self, hash: String) -> failure::Result<()> { self.tag_image(TESTED_TAG.to_string(), hash.clone())?;
+        fs::write(LAST_DEPLOYED_FILE, &hash)?;
         self.last_deployed_digest = Some(hash);
-        Ok(())
-    }
+        Ok(()) }
 
     fn tag_image(&self, tag: String, hash: String) -> failure::Result<()> {
         let mut get_request = BatchGetImageRequest::default();

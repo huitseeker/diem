@@ -39,8 +39,7 @@ impl Prometheus {
         start: &Duration,
         end: &Duration,
         step: u64,
-    ) -> failure::Result<MatrixResponse> {
-        let url = self
+    ) -> failure::Result<MatrixResponse> { let url = self
             .url
             .join(&format!(
                 "api/datasources/proxy/1/api/v1/query_range?query={}&start={}&end={}&step={}",
@@ -49,7 +48,7 @@ impl Prometheus {
                 end.as_secs(),
                 step
             ))
-            .expect("Failed to make query_range url");
+            ?;
 
         let mut response = self
             .client
@@ -71,8 +70,7 @@ impl Prometheus {
                 response.error_type,
                 response.error
             ),
-        }
-    }
+        } }
 }
 
 impl MatrixResponse {
