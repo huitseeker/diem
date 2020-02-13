@@ -58,7 +58,7 @@
 
 use crate::{hkdf::Hkdf, traits::*};
 use libra_crypto_derive::{Deref, DeserializeKey, SerializeKey, SilentDebug, SilentDisplay};
-use rand::{rngs::EntropyRng, RngCore};
+use rand_core::{CryptoRng, OsRng, RngCore};
 use sha2::Sha256;
 use std::{convert::TryFrom, ops::Deref};
 use x25519_dalek;
@@ -103,7 +103,7 @@ pub struct X25519SharedKey(x25519_dalek::SharedSecret);
 impl Uniform for X25519EphemeralPrivateKey {
     fn generate_for_testing<R>(rng: &mut R) -> Self
     where
-        R: ::rand::SeedableRng + ::rand::RngCore + ::rand::CryptoRng,
+        R: ::rand_core::SeedableRng + ::rand_core::RngCore + ::rand_core::CryptoRng,
     {
         X25519EphemeralPrivateKey(x25519_dalek::EphemeralSecret::new(rng))
     }
@@ -170,7 +170,7 @@ impl X25519StaticPrivateKey {
         seed: &[u8],
         app_info: Option<&[u8]>,
     ) -> (X25519StaticPrivateKey, X25519StaticPublicKey) {
-        let mut rng = EntropyRng::new();
+        let mut rng = OsRng;
         let mut seed_from_rng = [0u8; X25519_PRIVATE_KEY_LENGTH];
         rng.fill_bytes(&mut seed_from_rng);
 
@@ -184,7 +184,7 @@ impl X25519StaticPrivateKey {
 impl Uniform for X25519StaticPrivateKey {
     fn generate_for_testing<R>(rng: &mut R) -> Self
     where
-        R: ::rand::SeedableRng + ::rand::RngCore + ::rand::CryptoRng,
+        R: rand_core::SeedableRng + rand_core::RngCore + rand_core::CryptoRng + CryptoRng,
     {
         X25519StaticPrivateKey(x25519_dalek::StaticSecret::new(rng))
     }

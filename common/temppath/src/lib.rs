@@ -3,7 +3,7 @@
 
 #![forbid(unsafe_code)]
 
-use rand::RngCore;
+use rand_core::RngCore;
 use std::{
     fs, io,
     path::{Path, PathBuf},

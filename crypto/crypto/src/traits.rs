@@ -221,12 +221,12 @@ pub trait Signature:
 }
 
 /// A type family for schemes which know how to generate key material from
-/// a cryptographically-secure [`CryptoRng`][::rand::CryptoRng].
+/// a cryptographically-secure [`CryptoRng`][::rand_core::CryptoRng].
 pub trait Uniform {
     /// Generate key material from an RNG for testing purposes.
     fn generate_for_testing<R>(rng: &mut R) -> Self
     where
-        R: ::rand::SeedableRng + ::rand::RngCore + ::rand::CryptoRng;
+        R: rand_core::SeedableRng + rand_core::RngCore + rand_core::CryptoRng;
 }
 
 /// A type family with a by-convention notion of genesis private key.

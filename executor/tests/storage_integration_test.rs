@@ -22,7 +22,7 @@ use libra_types::{
     test_helpers::transaction_test_helpers::get_test_signed_txn,
     transaction::{Script, Transaction, TransactionListWithProof, TransactionWithProof},
 };
-use rand::SeedableRng;
+use rand_core::SeedableRng;
 use std::{collections::BTreeMap, convert::TryFrom, sync::Arc};
 use storage_client::{StorageRead, StorageReadServiceClient};
 use tokio::runtime::Runtime;

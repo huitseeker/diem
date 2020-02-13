@@ -117,7 +117,7 @@ impl Uniform for BLS12381PrivateKey {
     /// the key according to the spec [draft-irtf-cfrg-bls-signature-00](https://tools.ietf.org/id/draft-irtf-cfrg-bls-signature-00.html#keygen).
     fn generate_for_testing<R>(rng: &mut R) -> Self
     where
-        R: ::rand::SeedableRng + ::rand::RngCore + ::rand::CryptoRng,
+        R: ::rand_core::SeedableRng + ::rand_core::RngCore + ::rand_core::CryptoRng,
     {
         let mut fr;
         loop {

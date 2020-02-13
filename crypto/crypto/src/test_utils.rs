@@ -41,7 +41,7 @@ where
 {
     fn generate_for_testing<R>(rng: &mut R) -> Self
     where
-        R: ::rand::SeedableRng + ::rand::RngCore + ::rand::CryptoRng,
+        R: ::rand_core::SeedableRng + ::rand_core::RngCore + ::rand_core::CryptoRng,
     {
         let private_key = S::generate_for_testing(rng);
         private_key.into()
@@ -56,7 +56,7 @@ where
 {
     fn generate_for_testing<R>(rng: &mut R) -> Self
     where
-        R: ::rand::SeedableRng + ::rand::RngCore + ::rand::CryptoRng,
+        R: ::rand_core::SeedableRng + ::rand_core::RngCore + ::rand_core::CryptoRng,
     {
         let private_key = S::generate_for_testing(rng);
         let public_key = (&private_key).into();

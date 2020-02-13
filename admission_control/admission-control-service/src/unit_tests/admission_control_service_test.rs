@@ -21,7 +21,7 @@ use libra_types::{
     transaction::SignedTransaction,
     vm_error::{StatusCode, VMStatus},
 };
-use rand::SeedableRng;
+use rand_core::SeedableRng;
 use std::convert::TryFrom;
 use tonic::Request;
 use vm_validator::{

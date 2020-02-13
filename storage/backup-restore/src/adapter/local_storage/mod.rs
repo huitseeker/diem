@@ -9,7 +9,7 @@ use crate::FileHandle;
 use anyhow::Result;
 use async_trait::async_trait;
 use futures::{stream::BoxStream, StreamExt};
-use rand::RngCore;
+use rand_core::RngCore;
 use std::{
     io::{BufRead, BufReader, Write},
     path::{Path, PathBuf},
