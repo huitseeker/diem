@@ -33,11 +33,9 @@
 use crate::{traits::*, HashValue};
 use anyhow::{bail, Result};
 use core::convert::TryFrom;
+use ff::PrimeField;
 use libra_crypto_derive::{Deref, SilentDebug, SilentDisplay};
-use pairing::{
-    bls12_381::{Fr, FrRepr},
-    PrimeField,
-};
+use pairing::bls12_381::{Fr, FrRepr};
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 
