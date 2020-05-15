@@ -22,6 +22,19 @@ use proptest::{collection::vec, prelude::*};
 proptest! {
 
     #[test]
+    fn what_you_can_x25519(keypair in uniform_keypair_strategy::<Ed25519PrivateKey, Ed25519PublicKey>()) {
+        let x25519_public_key = x25519::PublicKey::from_ed25519_bytes(&keypair.public_key.to_bytes()[..]).unwrap();
+
+        // Let's construct an x25519 private key from the ed25519 private key.
+        let x25519_privatekey = x25519::PrivateKey::try_from(&keypair.private_key.to_bytes()[..]).unwrap();
+
+        // Now derive the public key from x25519_privatekey and see if it matches the public key that
+        // was created from the Ed25519PublicKey.
+        let x25519_publickey_2 = x25519_privatekey.public_key();
+        assert_eq!(x25519_public_key, x25519_publickey_2)
+    }
+
+    #[test]
     fn ed25519_and_x25519_privkeys(keypair in uniform_keypair_strategy::<x25519::PrivateKey, x25519::PublicKey>()){
         let x25519_public_bytes = keypair.public_key.to_bytes();
         let x25519_private_bytes = keypair.private_key.to_bytes();
