@@ -17,7 +17,7 @@ serde = "1.0.117"
 serde_derive = "1.0.117"
 structopt = "0.3.21"
 tokio = { version = "0.2.22", features = ["full"] }
-warp = "0.2.5"
+warp = "0.3.0"
 
 generate-key = { path = "../../config/generate-key", version = "0.1.0" }
 bcs = "0.1.2"
