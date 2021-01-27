@@ -4869,7 +4869,7 @@ dependencies = [
  "cfg-if 1.0.0",
  "instant",
  "libc",
- "redox_syscall",
+ "redox_syscall 0.1.57",
  "smallvec",
  "winapi 0.3.9",
 ]
@@ -5522,12 +5522,21 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "41cc0f7e4d5d4544e8861606a285bb08d3e70712ccc7d2b84d7c0ccfaf4b05ce"
 
 [[package]]
+name = "redox_syscall"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "05ec8ca9416c5ea37062b502703cd7fcb207736bc294f6e0cf367ac6fc234570"
+dependencies = [
+ "bitflags",
+]
+
+[[package]]
 name = "redox_termios"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7e891cfe48e9100a70a3b6eb652fef28920c117d366339687bd5576160db0f76"
 dependencies = [
- "redox_syscall",
+ "redox_syscall 0.1.57",
 ]
 
 [[package]]
@@ -5537,7 +5546,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "de0737333e7a9502c789a36d7c7fa6092a49895d4faa31ca5df163857ded2e9d"
 dependencies = [
  "getrandom 0.1.15",
- "redox_syscall",
+ "redox_syscall 0.1.57",
  "rust-argon2",
 ]
 
@@ -6799,7 +6808,7 @@ dependencies = [
  "cfg-if 0.1.10",
  "libc",
  "rand 0.7.3",
- "redox_syscall",
+ "redox_syscall 0.1.57",
  "remove_dir_all",
  "winapi 0.3.9",
 ]
@@ -6836,13 +6845,13 @@ dependencies = [
 
 [[package]]
 name = "termion"
-version = "1.5.5"
+version = "1.5.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c22cec9d8978d906be5ac94bceb5a010d885c626c4c8855721a4dbd20e3ac905"
+checksum = "077185e2eac69c3f8379a4298e1e07cd36beb962290d4a51199acf0fdc10607e"
 dependencies = [
  "libc",
  "numtoa",
- "redox_syscall",
+ "redox_syscall 0.2.4",
  "redox_termios",
 ]
 
